@@ -16,5 +16,8 @@
 
 int dfwrite(unsigned int fd, const char* buff, size_t count);
 int dfread(unsigned int fd, char* buff, size_t count);
+int dffprintf(unsigned int fd, const char *fmt, ...);
+// temporary
+#define dfprintf(...) dffprintf(stdin, __VA_ARGS__)
 
 #endif
