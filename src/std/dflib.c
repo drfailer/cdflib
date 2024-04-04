@@ -1,5 +1,5 @@
 #include "dflib.h"
-#include "../syscall/x86_64.h"
+#include "../syscall/syscall.h"
 
 void dfexit(int code) {
     register int syscall_code asm(SYSCALL_REG) = SYS_EXIT;
