@@ -8,7 +8,7 @@ statement to perform syscalls and the code is not linked to the standard library
 ## asm
 
 - The documentation can be found [here](https://gcc.gnu.org/onlinedocs/gcc/extensions-to-the-c-language-family/how-to-use-inline-assembly-language-in-c-code.html).
-- The list of kernel syscalls can be found [here](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit).
+- The list of kernel syscalls can be found [here](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md).
 
 ### sysexit example (x86)
 
