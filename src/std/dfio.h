@@ -15,5 +15,6 @@
 /******************************************************************************/
 
 int dfwrite(unsigned int fd, const char* buff, size_t count);
+int dfread(unsigned int fd, char* buff, size_t count);
 
 #endif

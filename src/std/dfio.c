@@ -10,3 +10,13 @@ int dfwrite(unsigned int fd, const char* buff, size_t count) {
     syscall;
     return result;
 }
+
+int dfread(unsigned int fd, char* buff, size_t count) {
+    register int syscall_code asm(SYSCALL_REG) = SYS_READ;
+    register unsigned int rfd asm(ARG_0) = fd;
+    register const char* rbuff asm(ARG_1) = buff;
+    register size_t rcount asm(ARG_2) = count;
+    register int result asm(SYSCALL_OUT_REG);
+    syscall;
+    return result;
+}
