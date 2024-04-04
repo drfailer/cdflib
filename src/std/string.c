@@ -1,4 +1,27 @@
 #include "string.h"
+#include "dfio.h"
+
+/******************************************************************************/
+/*                                string utils                                */
+/******************************************************************************/
+
+size_t dfstrlen(const char* str) {
+    size_t result = 0;
+
+    while (*str++) {
+        result++;
+    }
+    return result;
+}
+
+bool dfstreq(const char *lhs, const char *rhs) {
+    while (*lhs && *rhs) {
+        if (*lhs++ != *rhs++) {
+            return false;
+        }
+    }
+    return *lhs == 0 && *rhs == 0;
+}
 
 /******************************************************************************/
 /*                            convertion functions                            */
@@ -49,15 +72,68 @@ double dfstrtodouble(const char* str) {
         str++;
     }
 
-    double tmp = 0;
+    double decimals = 0;
     double factor = 1;
     while (dfisdigit(*str)) {
-        tmp = tmp*10 + dfchartoint(*str++);
+        decimals = decimals*10 + dfchartoint(*str++);
         factor *= 10;
     }
-    result += tmp / factor;
+    result += decimals / factor;
 
     return result * sign;
+}
+
+/*
+ * Converts a long to a string and put the result into `dest`.
+ */
+char* dflongtostr(char *dest, long n, size_t max) {
+    char buff[256] = {0};
+    int idxbuff = 0, idxdest = 0;
+    bool isneg = n < 0;
+    long posn = isneg ? -n : n;
+
+    while (posn > 0) {
+        buff[idxbuff++] = '0' + posn%10;
+        posn /= 10;
+    }
+    if (isneg) {
+        dest[idxdest++] = '-';
+    }
+    idxbuff--;
+    while (idxbuff >= 0 && idxdest < max) {
+        dest[idxdest++] = buff[idxbuff--];
+    }
+    dest[idxdest < max ? idxdest : idxdest - 1] = 0; // make sure the string is
+                                                     // valid
+    return dest;
+}
+
+/*
+ * Converts a double to a string and put the result into `dest`.
+ *
+ * NOT WORKING
+ */
+void dfdoubletostr(char *dest, double n, size_t max) {
+    bool isneg = n < 0;
+    double posn = isneg ? -n : n;
+    long longn = (long) n;
+    double decimals = posn - ((long) n);
+    int idxdest;
+    int dgt;
+
+    dflongtostr(dest, longn, max);
+    idxdest = dfstrlen(dest);
+    if (idxdest < max) {
+        dest[idxdest++] = '.';
+    }
+    while (idxdest < max && decimals > 0) {
+        decimals *= 10;
+        dgt = (int) decimals;
+        dest[idxdest++] = '0' + dgt;
+        decimals -= dgt;
+    }
+    dest[idxdest < max ? idxdest : idxdest - 1] = 0; // make sure the string is
+                                                     // valid
 }
 
 bool dfisdigit(const char chr) {
