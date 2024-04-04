@@ -6,6 +6,7 @@
 #define SYS_WRITE 0x01
 
 #define SYSCALL_REG "rax"
+#define SYSCALL_OUT_REG "rax"
 #define ARG_0 "rdi"
 #define ARG_1 "rsi"
 #define ARG_2 "rdx"

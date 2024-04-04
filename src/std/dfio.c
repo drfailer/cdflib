@@ -6,7 +6,7 @@ int dfwrite(unsigned int fd, const char* buff, size_t count) {
     register unsigned int rfd asm(ARG_0) = fd;
     register const char* rbuff asm(ARG_1) = buff;
     register size_t rcount asm(ARG_2) = count;
-    register int result asm(ARG_3);
+    register int result asm(SYSCALL_OUT_REG);
     syscall;
     return result;
 }

@@ -6,6 +6,7 @@
 #define SYS_WRITE 0x04
 
 #define SYSCALL_REG "eax"
+#define SYSCALL_OUT_REG "eax"
 #define ARG_0 "ebx"
 #define ARG_1 "ecx"
 #define ARG_2 "edx"
