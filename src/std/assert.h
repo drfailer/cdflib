@@ -7,9 +7,7 @@
 /*                                  function                                  */
 /******************************************************************************/
 
-#define linestr(line) #line
-
-#define errmsg(cond) #cond ": at " linestr(__LINE__) " failed.\n"
+#define errmsg(cond) "assert(" #cond "): failed.\n"
 
 #define assert(cond)                                                           \
     if (!(cond)) {                                                             \
