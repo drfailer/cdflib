@@ -13,12 +13,6 @@
 #define ARG_4 "edi"
 #define ARG_5 "edp"
 
-#define stdin 0
-#define stdout 1
-#define stderr 2
-
 #define syscall asm("int $0x80")
-
-typedef long unsigned int size_t;
 
 #endif

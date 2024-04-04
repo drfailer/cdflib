@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-O0 -MMD -fdiagnostics-color=auto -g -nostdlib -m64
 LDFLAGS=
-SRC=$(wildcard src/*.c)
+SRC=$(wildcard src/**/*.c) $(wildcard src/*.c)
 FILES=$(SRC:src/%=%)
 OBJ=$(addprefix build/,$(FILES:.c=.o))
 DEP=$(addprefix build/,$(FILES:.c=.d))
@@ -11,6 +11,7 @@ prog: $(OBJ)
 
 build/%.o: src/%.c
 	@mkdir -p build
+	@mkdir -p build/std
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:

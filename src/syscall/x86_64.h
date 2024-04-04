@@ -13,13 +13,7 @@
 #define ARG_4 "r8"
 #define ARG_5 "r9"
 
-#define stdin 0
-#define stdout 1
-#define stderr 2
-
 #define syscall asm("syscall")
-
-typedef long unsigned int size_t;
 
 #endif
 
