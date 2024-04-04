@@ -5,6 +5,8 @@
 #include "x86_64.h"
 #elif defined(__x86__)
 #include "x86.h"
+#else
+#   error "This architecture is not supported."
 #endif
 
 #endif
