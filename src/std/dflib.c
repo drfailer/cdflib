@@ -7,3 +7,10 @@ void dfexit(int code) {
     syscall;
 }
 
+void* dfmemset(void *str, int value, size_t count) {
+    int *ptr = (int*) str;
+    while (count--) {
+        *ptr++ = value;
+    }
+    return str;
+}
