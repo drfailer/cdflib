@@ -5,7 +5,7 @@
 #define SYS_READ 0x00
 #define SYS_WRITE 0x01
 
-#define rax "rax"
+#define SYSCALL_REG "rax"
 #define ARG_0 "rdi"
 #define ARG_1 "rsi"
 #define ARG_2 "rdx"
