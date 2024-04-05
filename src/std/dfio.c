@@ -49,7 +49,7 @@ int dffprintf(unsigned int fd, const char *fmt, ...) {
                 break;
             case 'f':
                 d = __builtin_va_arg(lst, double);
-                dfdoubletostr(buff, d, 1000);
+                dfdoubletostr(buff, d, 1000, 10e15);
                 dfwrite(fd, buff, dfstrlen(buff));
                 break;
             case 'c':

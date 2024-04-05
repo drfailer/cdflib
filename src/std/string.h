@@ -9,7 +9,7 @@ bool dfisdigit(const char chr);
 int dfchartoint(const char chr);
 long dfstrtolong(const char* str);
 double dfstrtodouble(const char* str);
-char* dflongtostr(char *dest, long n, size_t max);
-void dfdoubletostr(char *dest, double n, size_t max);
+int dflongtostr(char *dest, long n, size_t max);
+int dfdoubletostr(char *dest, double n, size_t max, long precision);
 
 #endif

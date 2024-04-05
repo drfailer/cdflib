@@ -25,30 +25,23 @@ void testStringConvertion() {
     dflongtostr(buff, 1234, 255);
 	assert(dfstreq("1234", buff));
 
-    dfdoubletostr(buff, 1234.7891, 255);
-    /* dfwrite(stdout, buff, dfstrlen(buff)); */
-    /* dfwrite(stdout, "\n", 1); */
-	/* assert(dfstreq("1234.7891", buff)); */
-
     dflongtostr(buff, -84, 255);
-    /* dfwrite(stdout, buff, dfstrlen(buff)); */
-    /* dfwrite(stdout, "\n", 1); */
 	assert(dfstreq("-84", buff));
 
-    dfdoubletostr(buff, -323.00983209832, 255);
-    /* dfwrite(stdout, buff, dfstrlen(buff)); */
-    /* dfwrite(stdout, "\n", 1); */
-	/* assert(dfstreq("-323.00983209832", buff)); */
+    dfdoubletostr(buff, 1234.7891, 255, 1e4);
+	assert(dfstreq("1234.7891", buff));
 
-    dfdoubletostr(buff, -1.001, 255);
-    /* dfwrite(stdout, buff, dfstrlen(buff)); */
-    /* dfwrite(stdout, "\n", 1); */
-	/* assert(dfstreq("-1.001", buff)); */
+    dfdoubletostr(buff, -323.00983209832, 255, 1e12);
+	assert(dfstreq("-323.009832098320", buff));
 
-    dfdoubletostr(buff, -1.0002823098, 255);
-    /* dfwrite(stdout, buff, dfstrlen(buff)); */
-    /* dfwrite(stdout, "\n", 1); */
-	/* assert(dfstreq("-1.0002823098", buff)); */
+    dfdoubletostr(buff, 323.00983209832, 255, 1e12);
+	assert(dfstreq("323.009832098320", buff));
+
+    dfdoubletostr(buff, -1.001, 255, 1e3);
+	assert(dfstreq("-1.001", buff));
+
+    dfdoubletostr(buff, -1.0002823098, 255, 1e10);
+	assert(dfstreq("-1.0002823098", buff));
 }
 
 void _start(void) {
@@ -63,7 +56,7 @@ void _start(void) {
 
     dfprintf("test\n");
     dfprintf("int: %d\n", 1);
-    dfprintf("int: %f\n", 1.1);
+    /* dfprintf("int: %f\n", 1.1); */
     dfprintf("char: %c\n", 'c');
     dfprintf("str: %s\n", "hello, world");
     dfprintf("int: %d & char: %c\n", 1, 'f');

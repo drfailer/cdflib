@@ -28,4 +28,6 @@ typedef unsigned char bool;
 
 void dfexit(int code);
 
+#define abs(n) (n >= 0 ? n : -n)
+
 #endif

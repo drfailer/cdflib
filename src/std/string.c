@@ -86,7 +86,7 @@ double dfstrtodouble(const char* str) {
 /*
  * Converts a long to a string and put the result into `dest`.
  */
-char* dflongtostr(char *dest, long n, size_t max) {
+int dflongtostr(char *dest, long n, size_t max) {
     char buff[256] = {0};
     int idxbuff = 0, idxdest = 0;
     bool isneg = n < 0;
@@ -105,35 +105,34 @@ char* dflongtostr(char *dest, long n, size_t max) {
     }
     dest[idxdest < max ? idxdest : idxdest - 1] = 0; // make sure the string is
                                                      // valid
-    return dest;
+    return idxdest;
 }
 
 /*
  * Converts a double to a string and put the result into `dest`.
- *
- * NOT WORKING
+ * This is not the most efficient and precise way to convert doubles to string
+ * but this solution is very simple and good enough for this project.
  */
-void dfdoubletostr(char *dest, double n, size_t max) {
-    bool isneg = n < 0;
-    double posn = isneg ? -n : n;
-    long longn = (long) n;
-    double decimals = posn - ((long) n);
-    int idxdest;
-    int dgt;
+int dfdoubletostr(char *dest, double n, size_t max, long precision) {
+    char decimals[100] = {0};
+    int idxdest, idxdec = 1;
+    long intpart = (long) n;
+    long decpart = ((abs(n) + 1) * precision) - (abs(intpart) * precision);
 
-    dflongtostr(dest, longn, max);
-    idxdest = dfstrlen(dest);
+    idxdest = dflongtostr(dest, intpart, max);
+    int size  = dflongtostr(decimals, decpart, 100);
+
     if (idxdest < max) {
         dest[idxdest++] = '.';
     }
-    while (idxdest < max && decimals > 0) {
-        decimals *= 10;
-        dgt = (int) decimals;
-        dest[idxdest++] = '0' + dgt;
-        decimals -= dgt;
+    while (idxdest < max && decimals[idxdec] != 0) {
+        dest[idxdest++] = decimals[idxdec++];
     }
-    dest[idxdest < max ? idxdest : idxdest - 1] = 0; // make sure the string is
-                                                     // valid
+    if (idxdest >= max) {
+        idxdest = max - 1;
+    }
+    dest[idxdest] = 0;
+    return idxdest;
 }
 
 bool dfisdigit(const char chr) {
