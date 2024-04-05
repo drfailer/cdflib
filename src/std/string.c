@@ -23,6 +23,20 @@ bool dfstreq(const char *lhs, const char *rhs) {
     return *lhs == 0 && *rhs == 0;
 }
 
+void dfstrcpy(char *restrict dest, const char *restrict src) {
+    while (*src) {
+        *dest++ = *src++;
+    }
+    *dest = 0;
+}
+
+void dfstrncpy(char *restrict dest, const char *restrict src, size_t count) {
+    while (*src && count--) {
+        *dest++ = *src++;
+    }
+    *dest = 0;
+}
+
 /******************************************************************************/
 /*                            convertion functions                            */
 /******************************************************************************/

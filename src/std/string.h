@@ -3,6 +3,8 @@
 #include "dflib.h"
 
 size_t dfstrlen(const char* str);
+void dfstrcpy(char *__restrict dest, const char *__restrict src);
+void dfstrncpy(char *__restrict dest, const char *__restrict src, size_t count);
 bool dfstreq(const char *lhs, const char *rhs);
 
 bool dfisdigit(const char chr);
