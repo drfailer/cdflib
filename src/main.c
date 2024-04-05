@@ -49,18 +49,23 @@ void _start(void) {
     testStringConvertion();
 
     /* test input oupout */
-    /* char buff[100] = {0}; */
-    /* dfwrite(stdout, "Enter a message:\n", 17); */
-    /* dfread(stdin, buff, 100); */
-    /* dfwrite(stdout, buff, 100); */
+    char buff[100] = {0};
+    int i = 4;
+    dfprintf("i: %d\n", i);
+    dfwrite(stdout, "Enter a message:\n", 17);
+    dfread(stdin, buff, 100);
+    dfwrite(stdout, buff, 100);
 
     dfprintf("test\n");
     dfprintf("int: %d\n", 1);
-    /* dfprintf("int: %f\n", 1.1); */
+    /* dffprintf(0, "double: %f\n", 10.0); */
     dfprintf("char: %c\n", 'c');
     dfprintf("str: %s\n", "hello, world");
     dfprintf("int: %d & char: %c\n", 1, 'f');
-    dfprintf("int: %d & char: %c & str: \"%s\"\n", 1, 'f', "hello world");
+    dfprintf("int: %d & char: %c & str: \"%s\"\n", 1, 'd', "hello world");
+
+    dfsprintf(buff, 100, "Hello, World!");
+    dfprintf("%s\n", buff);
 
     dfexit(EXIT_SUCESS);
     __builtin_unreachable(); // make that the compiler doesn't put anything else
